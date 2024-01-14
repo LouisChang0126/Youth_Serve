@@ -22,11 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 获取文档数据
                 const data = doc.data();
                 //hightlight
-                const leader = (data.主領 === user) ? 'class="is-warning"' : '';
-                const vice = (data.副主領 === user) ? 'class="is-warning"' : '';
-                const vocal = (data.助唱.includes(user)) ? 'class="is-warning"' : '';
-                const piano = (data.司琴 === user) ? 'class="is-warning"' : '';
-                const drum = (data.鼓手 === user) ? 'class="is-warning"' : '';
+                const microphone = (data.主領 === user || data.副主領 === user || data.助唱.includes(user)) ? 'class="is-warning"' : '';
+                const instruments = (data.司琴 === user || data.鼓手 === user || data.司琴2 === user || data.吉他 === user) ? 'class="is-warning"' : '';
                 const mixer = (data.音控.includes(user)) ? 'class="is-warning"' : '';
                 const reminder = (data.提醒人 === user) ? 'class="is-warning"' : '';
                 const ppt = (data.字幕.includes(user)) ? 'class="is-warning"' : '';
@@ -43,16 +40,33 @@ document.addEventListener("DOMContentLoaded", function() {
                     info = ''; // 或者设置一个默认值，具体取决于你的需求
                     console.log('重要資訊不是一个数组');
                 }
+                //vocal
+                var vocal;
+                if (data.主領 != " ") {
+                    vocal = data.主領 + '/' + data.副主領 + '/' + data.助唱;
+                }
+                else {
+                    vocal = ''; // 或者设置一个默认值，具体取决于你的需求
+                }
+                //樂手
+                var band;
+                if (data.司琴 != " ") {
+                    band = data.司琴 + '/' + data.鼓手;
+
+                    if(data.司琴2 != " ") band += '/' + data.司琴2;
+                    else if(data.吉他 != " ") band += '/' + data.吉他;
+                }
+                else {
+                    band = ''; // 或者设置一个默认值，具体取决于你的需求
+                    console.log('重要資訊不是一个数组');
+                }
                 //內文
                 document.getElementById('chart').innerHTML += `
                 <tr>
                     <th>${doc.id.substring(5,10).replace('.', '/')}</th>
                     <th>${info}</th>
-                    <th ${leader}>${data.主領}</th>
-                    <th ${vice}>${data.副主領}</th>
-                    <th ${vocal}>${data.助唱}</th>
-                    <th ${piano}>${data.司琴}</th>
-                    <th ${drum}>${data.鼓手}</th>
+                    <th ${microphone}>${vocal}</th>
+                    <th ${instruments}>${band}</th>
                     <th ${mixer}>${data.音控}</th>
                     <th ${reminder}>${data.提醒人}</th>
                     <th ${ppt}>${data.字幕}</th>
@@ -77,5 +91,5 @@ document.getElementById('info').addEventListener('click', function(event) {
 
     // 在按鈕按下後修改按鈕文字
     var buttonText = this.innerText;
-    this.innerText = (buttonText === '重要資訊') ? '不重要資訊' : '重要資訊';
+    this.innerText = (buttonText === '重要資訊') ? '資\n訊' : '重要資訊';
 });
