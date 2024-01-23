@@ -7,9 +7,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 </head>
 <body>
-  <label class="checkbox"><input id="checkbox_info" type="checkbox">重要資訊</label>
-  <label class="checkbox"><input id="checkbox_band" type="checkbox" checked>敬拜團</label>
-  <label class="checkbox"><input id="checkbox_not_band" type="checkbox" checked>非敬拜團</label>
+  <label class="checkbox"><input class="largeCheckbox" id="checkbox_info" type="checkbox"/>重要資訊</label>
+  <label class="checkbox"><input class="largeCheckbox" id="checkbox_band" type="checkbox" checked/>敬拜團</label>
+  <label class="checkbox"><input class="largeCheckbox" id="checkbox_not_band" type="checkbox" checked/>非敬拜團</label>
 	<table class="table is-striped is-bordered">
         <thead>
           <tr>
@@ -33,5 +33,13 @@
 </body>
 
 <script src="firestore.js" > </script>
-
+<style>
+  .checkbox {
+    font-size: 2em;
+  }
+  input.largeCheckbox {
+    width: 25px;
+    height:25px;
+  }
+</style>
 </html>
