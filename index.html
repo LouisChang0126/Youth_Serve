@@ -2,28 +2,30 @@
 <html>
 <head>
     <title>青崇班表</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 </head>
 <body>
-	<table class="table is-striped is-bordered" style="width: 100%;">
+  <label class="checkbox"><input id="checkbox_info" type="checkbox">重要資訊</label>
+  <label class="checkbox"><input id="checkbox_band" type="checkbox" checked>敬拜團</label>
+  <label class="checkbox"><input id="checkbox_not_band" type="checkbox" checked>非敬拜團</label>
+	<table class="table is-striped is-bordered">
         <thead>
           <tr>
             <th>日期</th>
-            <th><button class="button is-small is-focused is-link is-light info-column"  id="info">重要資訊</button></th>
-            <th>主領/副主領/助唱</th>
-            <th>樂手</th>
-            <th>音控</th>
-            <th>提醒人</th>
-            <th>字幕</th>
-            <th>司會</th>
-            <th>奉獻</th>
-            <th>招待</th>
-            <th>會前</th>
-            <th>先知性</th>
+            <th class="info_show is-hidden has-background-link-light">重要資訊</th>
+            <th class="band_show has-background-success">主領/副主領/助唱</th>
+            <th class="band_show has-background-success">樂手</th>
+            <th class="band_show has-background-success">音控</th>
+            <th class="not_band_show has-background-danger-light">提醒人</th>
+            <th class="not_band_show has-background-danger-light">字幕</th>
+            <th class="not_band_show has-background-danger-light">司會</th>
+            <th class="not_band_show has-background-danger-light">奉獻</th>
+            <th class="not_band_show has-background-danger-light">招待</th>
+            <th class="not_band_show has-background-danger-light">會前</th>
+            <th class="not_band_show has-background-danger-light">先知性</th>
           </tr>
-        </thead>
         <tbody id="chart"></tbody>
       </table>
 	

@@ -22,23 +22,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 获取文档数据
                 const data = doc.data();
                 //hightlight
-                const microphone = (data.主領 === user || data.副主領 === user || data.助唱.includes(user)) ? 'class="is-warning"' : '';
-                const instruments = (data.司琴 === user || data.鼓手 === user || data.司琴2 === user || data.吉他 === user) ? 'class="is-warning"' : '';
-                const mixer = (data.音控.includes(user)) ? 'class="is-warning"' : '';
-                const reminder = (data.提醒人 === user) ? 'class="is-warning"' : '';
-                const ppt = (data.字幕.includes(user)) ? 'class="is-warning"' : '';
-                const anchor = (data.司會 === user) ? 'class="is-warning"' : '';
-                const offering = (data.奉獻 === user) ? 'class="is-warning"' : '';
-                const welcomer = (data.招待.includes(user)) ? 'class="is-warning"' : '';
-                const prayer = (data["會前"].includes(user)) ? 'class="is-warning"' : '';
-                const prophetic = (data.先知性.includes(user)) ? 'class="is-warning"' : '';
+                const microphone = (data.主領 === user || data.副主領 === user || data.助唱.includes(user)) ? 'class="band_show has-background-warning"' : 'class="band_show"';
+                const instruments = (data.司琴 === user || data.鼓手 === user || data.司琴2 === user || data.吉他 === user) ? 'class="band_show has-background-warning"' : 'class="band_show"';
+                const mixer = (data.音控.includes(user)) ? 'class="band_show has-background-warning"' : 'class="band_show"';
+                const reminder = (data.提醒人 === user) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                const ppt = (data.字幕.includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                const anchor = (data.司會 === user) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                const offering = (data.奉獻 === user) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                const welcomer = (data.招待.includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                const prayer = (data["會前"].includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                const prophetic = (data.先知性.includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
                 //重要資訊 換行
                 var info;
                 if (Array.isArray(data.重要資訊)) {
                     info = data.重要資訊.map(item => `<p>${item}</p>`).join("\n");
                 } else {
                     info = ''; // 或者设置一个默认值，具体取决于你的需求
-                    console.log('重要資訊不是一个数组');
+                    //console.log('重要資訊不是一个数组');
                 }
                 //vocal
                 var vocal;
@@ -58,13 +58,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 else {
                     band = ''; // 或者设置一个默认值，具体取决于你的需求
-                    console.log('重要資訊不是一个数组');
+                    //console.log('重要資訊不是一个数组');
                 }
                 //內文
                 document.getElementById('chart').innerHTML += `
                 <tr>
                     <th>${doc.id.substring(5,10).replace('.', '/')}</th>
-                    <th class="info-column">${info}</th>
+                    <th class="info_show is-hidden">${info}</th>
                     <th ${microphone}>${vocal}</th>
                     <th ${instruments}>${band}</th>
                     <th ${mixer}>${data.音控}</th>
@@ -80,23 +80,33 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-
-    if (isMobileOrTablet()) {
-        // 如果是手機或平板，隱藏重要資訊列
-        document.querySelectorAll('#chart .info-column').forEach(function(column) {
-            column.style.display = 'none';
+    /*
+    if (window.innerWidth <= 768) {
+        var par = document.querySelectorAll('.info_show');
+        par.forEach(function(paragraph) {
+            paragraph.classList.toggle('is-hidden');
         });
-    }
+        console.log("hi");
+    }*/
 });
 
-
-document.getElementById('info').addEventListener('click', function(event) {
-    var paragraphs = document.querySelectorAll('#chart p');
+document.getElementById("checkbox_info").addEventListener('change', function() {
+    var paragraphs = document.querySelectorAll('.info_show');
     paragraphs.forEach(function(paragraph) {
         paragraph.classList.toggle('is-hidden');
     });
+});
 
-    // 在按鈕按下後修改按鈕文字
-    var buttonText = this.innerText;
-    this.innerText = (buttonText === '重要資訊') ? '資\n訊' : '重要資訊';
+document.getElementById("checkbox_band").addEventListener('change', function() {
+    var paragraphs = document.querySelectorAll('.band_show');
+    paragraphs.forEach(function(paragraph) {
+        paragraph.classList.toggle('is-hidden');
+    });
+});
+
+document.getElementById("checkbox_not_band").addEventListener('change', function() {
+    var paragraphs = document.querySelectorAll('.not_band_show');
+    paragraphs.forEach(function(paragraph) {
+        paragraph.classList.toggle('is-hidden');
+    });
 });
