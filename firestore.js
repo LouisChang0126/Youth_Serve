@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('chart').innerHTML += `
                 <tr>
                     <th>${doc.id.substring(5,10).replace('.', '/')}</th>
-                    <th>${info}</th>
+                    <th class="info-column">${info}</th>
                     <th ${microphone}>${vocal}</th>
                     <th ${instruments}>${band}</th>
                     <th ${mixer}>${data.音控}</th>
@@ -80,6 +80,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    if (isMobileOrTablet()) {
+        // 如果是手機或平板，隱藏重要資訊列
+        document.querySelectorAll('#chart .info-column').forEach(function(column) {
+            column.style.display = 'none';
+        });
+    }
 });
 
 
