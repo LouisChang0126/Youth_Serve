@@ -115,27 +115,9 @@ document.getElementById("dl_chart").addEventListener('click', function() {
     const table = document.querySelector('.table');
     html2canvas(table).then(canvas => {
         const imageData = canvas.toDataURL('image/png');
-        
-        // 創建一個 a 元素
         const downloadLink = document.createElement('a');
         downloadLink.href = imageData;
         downloadLink.download = 'table_image.png';
-
-        // 判斷是否是 iOS 系統
-        if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-            // 將圖片嵌入到 a 元素中，這樣 iOS 會認為這是一個可下載的圖片
-            const img = document.createElement('img');
-            img.src = imageData;
-            downloadLink.appendChild(img);
-        }
-
-        // 將 a 元素添加到文檔中
-        document.body.appendChild(downloadLink);
-
-        // 觸發點擊事件
         downloadLink.click();
-
-        // 移除 a 元素
-        document.body.removeChild(downloadLink);
     });
 });
