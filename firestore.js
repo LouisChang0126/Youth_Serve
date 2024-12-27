@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const anchor = (data.司會 === user) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
                 const offering = (data.奉獻 === user) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
                 const welcomer = (data.招待.includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
-                const prayer = (data["會前"].includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                // const prayer = (data["會前"].includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
                 const prophetic = (data.先知性.includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
                 //重要資訊 換行
                 var info;
@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     <th ${anchor}>${data.司會}</th>
                     <th ${offering}>${data.奉獻}</th>
                     <th ${welcomer}>${data.招待}</th>
-                    <th ${prayer}>${data["會前"]}</th>
                     <th ${prophetic}>${data.先知性}</th>
                 </tr>
                 `;
