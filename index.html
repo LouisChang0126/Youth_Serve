@@ -6,11 +6,17 @@
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <style>
+    .fire-bg {
+      background-color: rgb(142, 225, 255);
+    }
+  </style>
 </head>
 <body>
   <label class="checkbox"><input class="largeCheckbox" id="checkbox_info" type="checkbox"/>重要資訊</label>
   <label class="checkbox"><input class="largeCheckbox" id="checkbox_band" type="checkbox" checked/>敬拜團</label>
   <label class="checkbox"><input class="largeCheckbox" id="checkbox_not_band" type="checkbox" checked/>非敬拜團</label>
+  <label class="checkbox"><input class="largeCheckbox" id="checkbox_fire" type="checkbox" checked/>🔥禱告會</label>
 	<button class="button is-link is-outlined" id="dl_chart">下載班表</button>
   <div class="table-container">
     <table class="table is-striped is-bordered">
@@ -28,6 +34,8 @@
           <th class="not_band_show has-background-danger-light">招待</th>
           <!-- <th class="not_band_show has-background-danger-light">會前</th> -->
           <th class="not_band_show has-background-danger-light">先知性</th>
+          <th class="fire-prayer-meeting fire-bg">🔥樂手</th>
+          <th class="fire-prayer-meeting fire-bg">🔥主領</th>
         </tr>
       </thead>
       <tbody id="chart"></tbody>

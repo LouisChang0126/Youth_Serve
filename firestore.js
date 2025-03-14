@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 const welcomer = (data.招待.includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
                 // const prayer = (data["會前"].includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
                 const prophetic = (data.先知性.includes(user)) ? 'class="not_band_show has-background-warning"' : 'class="not_band_show"';
+                const fire_band = (data.烈火樂手.includes(user)) ? 'class="fire-prayer-meeting has-background-warning"' : 'class="fire-prayer-meeting"';
+                const fire_leader = (data.烈火主領.includes(user)) ? 'class="fire-prayer-meeting has-background-warning"' : 'class="fire-prayer-meeting"';
                 //重要資訊 換行
                 var info;
                 if (Array.isArray(data.重要資訊)) {
@@ -75,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     <th ${offering}>${data.奉獻}</th>
                     <th ${welcomer}>${data.招待}</th>
                     <th ${prophetic}>${data.先知性}</th>
+                    <th ${fire_band}>${data.烈火樂手}</th>
+                    <th ${fire_leader}>${data.烈火主領}</th>
                 </tr>
                 `;
             }
@@ -106,6 +110,13 @@ document.getElementById("checkbox_band").addEventListener('change', function() {
 
 document.getElementById("checkbox_not_band").addEventListener('change', function() {
     var paragraphs = document.querySelectorAll('.not_band_show');
+    paragraphs.forEach(function(paragraph) {
+        paragraph.classList.toggle('is-hidden');
+    });
+});
+
+document.getElementById("checkbox_fire").addEventListener('change', function() {
+    var paragraphs = document.querySelectorAll('.fire-prayer-meeting');
     paragraphs.forEach(function(paragraph) {
         paragraph.classList.toggle('is-hidden');
     });
