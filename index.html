@@ -17,6 +17,7 @@
   <label class="checkbox"><input class="largeCheckbox" id="checkbox_band" type="checkbox" checked/>敬拜團</label>
   <label class="checkbox"><input class="largeCheckbox" id="checkbox_not_band" type="checkbox" checked/>非敬拜團</label>
   <label class="checkbox"><input class="largeCheckbox" id="checkbox_fire" type="checkbox" checked/>🔥禱告會</label>
+  <label class="checkbox"><input class="largeCheckbox" id="checkbox_expire" type="checkbox"/>顯示前5週</label>
 	<button class="button is-link is-outlined" id="dl_chart">下載班表</button>
   <div class="table-container">
     <table class="table is-striped is-bordered">
@@ -27,6 +28,7 @@
           <th class="band_show has-background-success">主領/副主領/助唱</th>
           <th class="band_show has-background-success">樂手</th>
           <th class="band_show has-background-success">音控</th>
+          <th class="band_show has-background-success">彩排</th>
           <th class="not_band_show has-background-danger-light">提醒人</th>
           <th class="not_band_show has-background-danger-light">字幕</th>
           <th class="not_band_show has-background-danger-light">司會</th>
@@ -61,6 +63,9 @@
     top: 0;
     background-color: white;
     z-index: 100;
+  }
+  .expire-row {
+    background-color: #dddddd;
   }
 </style>
 </html>
